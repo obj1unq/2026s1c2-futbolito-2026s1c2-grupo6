@@ -2,18 +2,17 @@ import wollok.game.*
 import objetos.*
 
 program futbolito{
-
 	game.addVisual(lionel)
 	game.addVisual(pelota)
 	game.cellSize(40)
 	game.width(15)
 	game.height(10)
+	
 	keyboard.enter().onPressDo({game.say(lionel, "Vamos Argentina!")})
 	keyboard.left().onPressDo({lionel.retroceder()})
 	keyboard.right().onPressDo({lionel.avanzar()})
 	keyboard.t().onPressDo({ lionel.taquito() })
+	keyboard.c().onPressDo({lionel.cambiarCamiseta()})
 
 	game.start()
-
-
 }
