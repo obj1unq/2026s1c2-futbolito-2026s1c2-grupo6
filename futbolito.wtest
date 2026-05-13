@@ -1,0 +1,22 @@
+import objetos.*
+import wollok.game.*
+
+
+describe "Test de Futbolito" {
+
+    method initialize() {
+    }
+
+    test "lionel cambia de camiseta si esta sobre el borde izquierdo" {
+        lionel.retroceder()
+        lionel.retroceder()
+        lionel.retroceder()
+        lionel.cambiarCamiseta()
+        
+        assert.equals(suplente, lionel.camisetaActual())
+    }
+
+    test "lionel no cambia de camiseta porque no esta sobre el borde izquierdo" {
+        assert.throwsException({ lionel.cambiarCamiseta() })
+    }
+}
