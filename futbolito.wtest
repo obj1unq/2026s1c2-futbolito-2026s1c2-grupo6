@@ -1,0 +1,41 @@
+import objetos.*
+import wollok.game.*
+
+
+describe "Test de Futbolito" {
+
+    method initialize() {
+    }
+
+    test "lionel cambia de camiseta si esta sobre el borde izquierdo" {
+        lionel.retroceder()
+        lionel.retroceder()
+        lionel.retroceder()
+        lionel.cambiarCamiseta()
+        
+        assert.equals(suplente, lionel.camisetaActual())
+    }
+
+    test "lionel no cambia de camiseta porque no esta sobre el borde izquierdo" {
+        assert.throwsException({ lionel.cambiarCamiseta() })
+    }
+}
+
+describe "Taco"{
+    method initialize(){
+	    game.width(15)
+	    game.height(10)
+    }
+    test "Lionel no esta donde esta la pelota y lo anuncia" {
+        assert.throwsException({lionel.taquito()})
+    }
+    test "lionel avanza hacia la pelota y hace un taco"{
+        lionel.avanzar()
+        lionel.avanzar()
+        assert.equals(pelota.position(),lionel.position())
+
+        lionel.taquito()
+
+        assert.equals(pelota.position().x(),lionel.position().x()-2)
+}
+}
