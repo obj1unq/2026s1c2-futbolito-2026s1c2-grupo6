@@ -1,0 +1,27 @@
+import objetos.*
+import game.*
+
+describe "Taco"{
+
+
+  method initialize(){
+	  game.width(15)
+	  game.height(10)
+
+  }
+  test "Lionel no esta donde esta la pelota y lo anuncia"{
+ 
+   
+   assert.throwsException({lionel.taquito()})
+  }
+  test "lionel avanza hacia la pelota y hace un taco"{
+    lionel.avanzar()
+    lionel.avanzar()
+    assert.equals(pelota.position(),lionel.position())
+
+    lionel.taquito()
+
+    assert.equals(pelota.position().x(),lionel.position().x()-2)
+  }
+
+}
