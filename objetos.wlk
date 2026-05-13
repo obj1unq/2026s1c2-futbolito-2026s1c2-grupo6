@@ -16,17 +16,16 @@ object lionel {
 	}
 
 	method taquito() {
-	  self.confirmarSiEstaLaPelotaEnLionel()
-	  pelota.moverConBotin()
+		self.confirmarSiEstaLaPelotaEnLionel()
+		pelota.moverConBotin()
 	}
 
 	method laPelotaEstaEnLionel() {
-	  return pelota.position() == self.position()
+		return pelota.position() == self.position()
 	}
 
 	method confirmarSiEstaLaPelotaEnLionel() {
-	  if (not self.laPelotaEstaEnLionel())
-	  	self.error("La pelota no esta en Lionel")
+		if (not self.laPelotaEstaEnLionel()) self.error("La pelota no esta en Lionel")
 	}
 
 	
@@ -71,52 +70,51 @@ object pelota {
 			game.schedule(2000, {self.caer()}) 
 		}
 	}
+
 	method levantar(){ 
 		position = position.up(1)
 	}
+
 	method caer(){ 
 		position = position.down(1)
 	}
-	var property position = game.at(5,5)
 	
 	method moverConBotin() {
-	  position = game.at(0.max(position.x() - 2), position.y()) 
+		position = game.at(0.max(position.x() - 2), position.y()) 
 	}
 
 	var property jugador = lionel
 
 	method subir() {
 		self.noLlegoAlaPelota()
-	  	position = position.up(1)
-	 	game.schedule(2000, {self.bajar()})
+		position = position.up(1)
+		game.schedule(2000, {self.bajar()})
 	}
 
 	method bajar() {
-	  position = position.down(1)
+		position = position.down(1)
 	}
 
 
 	method noLlegoAlaPelota() {
-	  if(not self.estaConLaPelota()){
+		if(not self.estaConLaPelota()){
 			self.error("Liones no esta en posicion con la pelota")
-	  }
+		}
 	}
 
 	method estaConLaPelota() {
-	  return self.position() == jugador.position()
+		return self.position() == jugador.position()
 	}
-
-
 
 	method patear(){
-		 self.validarPosicion()
-		 position =  game.at((game.width() - 1).min(position.x() + 3), position.y()) 
+		self.validarPosicion()
+		position =  game.at((game.width() - 1).min(position.x() + 3), position.y()) 
 		
 	}
-     method validarPosicion(){
-		 if (!(jugador.position().x() == position.x())){
-			 self.error("el jugadór No está lo suficientemente cerca para patear la pelota")
-			
-		 }
-	 }	
+    
+	method validarPosicion(){
+		if (!(jugador.position().x() == position.x())){
+			self.error("el jugadór No está lo suficientemente cerca para patear la pelota")
+		}
+	}	
 }
